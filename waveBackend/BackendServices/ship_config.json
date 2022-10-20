@@ -1,0 +1,52 @@
+{
+  "name": "R/V Gunnerus",
+  "version": 0.1,
+  "home_port": "Trondheim",
+  "fuel_capacity": 10000,
+  "engines": [
+    {
+      "name": "Engine 1",
+      "serial": "AU65WX16542"
+    }
+  ],
+  "generators": [
+    {
+      "name": "Generator 1",
+      "serial": "GA634H4CX15",
+      "output_table": {
+        "100": 250,
+        "200": 300,
+        "300": 350,
+        "400": 400,
+        "500": 450,
+        "600": 500,
+        "700": 550,
+        "800": 600,
+        "900": 650,
+        "1000": 700,
+        "1100": 750,
+        "1200": 800
+      }
+    }
+  ],
+  "operations": [
+    {
+      "name": "Transit",
+      "base_rpm": 350,
+      "base_fuel_consumption": 100,
+      "base_speed": 10
+    },
+    {
+      "name": "DP",
+      "base_rpm": 100,
+      "base_fuel_consumption": 75,
+      "base_speed": 0
+    },
+    {
+      "name": "Port",
+      "base_rpm": 0,
+      "base_fuel_consumption": 5,
+      "base_speed": 0
+    }
+  ]
+}
