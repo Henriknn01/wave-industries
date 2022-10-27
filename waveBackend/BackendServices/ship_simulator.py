@@ -21,21 +21,59 @@ class SimulationComponent:
 
 
 class Engine:
-    def __init__(self, engine_name, signal_noise: int = 1, signal_amplitude: int = 1):
+    def __init__(self, engine_name, signal_noise: int = 1, simulation_turn: int = 0):
         self.name = engine_name
         self.signal_noise = signal_noise
-        self.signal_amplitude = signal_amplitude
         self.rpm = 0
         self.temperature = 0
         self.fuel_consumption = 0
+        # Set base values
         self.base_rpm = 0
         self.base_fuel_consumption = 0
+        self.base_temperature = 0
+        self.simulation_turn = simulation_turn
         self.mode = ""
 
-    def set_mode(self, mode_base_rpm, mode_base_fuel_consumption, mode_name):
+    def set_mode(self, mode_base_rpm, mode_base_fuel_consumption, mode_base_temperature, mode_name):
         self.base_rpm = mode_base_rpm
         self.base_fuel_consumption = mode_base_fuel_consumption
+        self.base_temperature = mode_base_temperature
         self.mode = mode_name
+
+    def get_rpm(self):
+        # Used as base numbers for the amplifications of the sinus waves
+        wave_1_base = self.base_rpm
+        wave_2_base = (self.base_rpm + (round(self.base_rpm * 0.6)))
+        wave_3_base = (self.base_rpm + (round(self.base_rpm * 0.35)))
+
+        # used for the sinus waves
+        degrees = math.radians(self.simulation_turn)
+
+        # create a combination of 3 sinus waves to make the rpm's go up and down at seemingly random times
+        wave = (
+                random.randrange(wave_1_base, round(wave_1_base*1.20))*(math.sin((degrees/2))/20)
+                + random.randrange(wave_2_base, round(wave_2_base*1.25))*(math.sin((degrees/3))/40)
+                + random.randrange(wave_3_base, round(wave_3_base*1.15))*(math.sin((degrees/5))/30)
+        )
+        return self.base_rpm + wave
+
+    def get_fuel_consumption(self):
+        # Used as base numbers for the amplifications of the sinus waves
+        wave_1_base = self.base_rpm
+
+        # used for the sinus waves
+        degrees = math.radians(self.simulation_turn)
+
+        # create a combination of 3 sinus waves to make the fuel consumption to go up and down
+        wave = ((math.sin((degrees / 3)))
+                + (math.sin((degrees / 6)))
+                + (-math.sin(((degrees / 2) * math.pi) / 3))
+        )
+        return (self.base_fuel_consumption + wave)/20
+
+    def get_temperature(self):
+        return self.base_temperature
+
 
 
 # Generator inherits from engine as it is essentially an engine that produces power
@@ -86,33 +124,6 @@ class Ship:
 
 
 if __name__ == "__main__":
-    count = 0
-    rpm_list = []
-    fuel_consumption = []
-
-    base_rpm = 100
-    base_fuel_con = 250
-    while count < 100000:
-        if count > 500:
-            base_rpm = 50
-            base_fuel_con = 125
-
-        rpm = base_rpm + (random.randrange(120, 150)*(math.sin((math.radians(count)/2))/20)
-                     + random.randrange(220, 250)*(math.sin((math.radians(count)/3))/40)
-                     + random.randrange(100, 120)*(math.sin((math.radians(count)/5))/30)
-                     )
-        rpm_list.append(rpm)
-        fuel_consumption.append(base_fuel_con + (
-                random.randrange(60, 70)*(((
-                                            math.sin((math.radians(count)/3)))
-                                           +(math.sin((math.radians(count)/6)))
-                                           +(-math.sin((math.radians(count/2*math.pi)/3))))/20)))
-        count += 1
-    plt.plot(rpm_list, label="RPM")
-    plt.plot(fuel_consumption, label="Fuel")
-    plt.show()
-
-# TODO: create seperate classes for engine and generator
-
+    engine_1 = Engine()
 class Simulation:
     pass
