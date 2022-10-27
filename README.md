@@ -12,8 +12,8 @@ Effecency of ships, is a significant part of CO2 .
 Environmental impact assesment can be both costly and time-consuming.
 
 
-## The Solution 
-With our proposed solution we aim to hit a more efficent shipping industry. 
+## The Solution
+With our proposed solution we aim to hit a more efficent shipping industry.
 Wave introduces Management consoles for both the engineering teams and management teams.
 Connecting ships together with new technology could lead to a more Economic and efficant shipping industry.
 
@@ -32,3 +32,32 @@ Connecting ships together with new technology could lead to a more Economic and 
 - Write clear and understandable code and documantation
 - Regularly work in sprints
 
+## How to build
+we use node package manager and vue to build the frontend
+### Frontend
+
+Project setup
+```
+yarn install
+```
+Compiles and hot-reloads for development
+```
+yarn serve
+```
+Compiles and minifies for production
+```
+yarn build
+```
+Lints and fixes files
+```
+yarn lint
+```
+### Backend
+
+#### database
+
+django is setup for database handling.
+
+#### MQTT
+
+MQTT server
