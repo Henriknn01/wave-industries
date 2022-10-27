@@ -1,14 +1,23 @@
 import paho.mqtt.client as mqtt
 import time
+import datetime
+
+
+
 
 # address of the mqtt broker connecting to the broker
-mqttBroker = "129.241.152.12"
+mqttBroker = "10.22.186.196"
 port = "1883"
 client = mqtt.Client("Device")
 client.connect(mqttBroker)
 
-while True:
-    client.publish("TOPIC")
-    print("Published" )
+topic = "topic/hub"
+message = "japanese salary man "
 
-    time.sleep(10)
+
+while True:
+    ts = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    client.publish(topic, message + ts)
+    print(message + ts)
+
+    time.sleep(5)
