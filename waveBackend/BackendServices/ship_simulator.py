@@ -128,10 +128,10 @@ class Ship:
             )
             self.modes.append(m)
         for engine in data['engines']:
-            e = Engine(engine['name'])
+            e = Engine(engine['name'], simulation_turn=random.randrange(0, 1000))
             self.ship_engine = e
         for generator in data['generators']:
-            g = Engine(generator['name'])
+            g = Engine(generator['name'], simulation_turn=random.randrange(0, 10000))
             self.ship_generators.append(g)
 
     def set_mode(self, mode: Mode):
