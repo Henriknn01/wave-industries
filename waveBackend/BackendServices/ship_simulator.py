@@ -134,13 +134,16 @@ class Ship:
             g = Engine(generator['name'])
             self.ship_generators.append(g)
 
+    def set_mode(self, mode: Mode):
+        self.ship_engine.set_mode(mode)
+        for g in self.ship_generators:
+            g.set_mode(mode)
+
     def start_simulation(self):
         self.running = True
         in_transition = False
         transition_turn = 0
-        self.ship_engine.set_mode(self.modes[0])
-        for g in self.ship_generators:
-            g.set_mode(self.modes[0])
+        self.set_mode(self.modes[0])
 
         while self.running:
             total_fuel_consumption = 0
@@ -168,7 +171,7 @@ class Ship:
                 g.next_turn()
 
             turn_fuel_consumed = (total_fuel_consumption/60/60)*self.simulation_speed
-            data['total_fuel_consumption'] = turn_fuel_consumed*60*60*10
+            data['total_fuel_consumption'] = total_fuel_consumption
             self.ship_fuel_level -= turn_fuel_consumed
             self.simulation_turns += 1
             time.sleep(self.simulation_speed)
