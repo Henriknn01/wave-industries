@@ -6,7 +6,7 @@ import datetime
 
 
 # address of the mqtt broker connecting to the broker
-mqttBroker = "10.22.186.196"
+mqttBroker = "79.160.34.197"
 port = "1883"
 client = mqtt.Client("Device")
 client.connect(mqttBroker)
