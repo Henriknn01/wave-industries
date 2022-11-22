@@ -4,7 +4,8 @@ import time
 from math import sin
 from os.path import exists
 import json
-from matplotlib import pyplot as plt
+import paho.mqtt.client as paho
+
 
 
 # TODO: implement noise to the signals
@@ -84,6 +85,9 @@ class Engine:
         return self.mode.base_energy_output + (self.mode.base_temperature*0.2)*(math.sin(math.radians(self.simulation_turn+50)/2)
                                                                     * math.sin(math.radians(self.simulation_turn+32)/3))
 
+    def get_name(self):
+        return self.name
+
     def next_turn(self):
         self.simulation_turn += 1
 
@@ -110,6 +114,16 @@ class Ship:
     simulation_turns = 0
     running = False
     modes = []
+
+    # mqtt settings
+    broker = "79.160.34.197"
+    port = 1883
+    def on_publish(client, userdata, result):  # create function for callback
+        # print("data published \n")
+        pass
+    mqttclient = paho.Client("ship_client")  # create client object
+    mqttclient.on_publish = on_publish  # assign function to callback
+
 
     def load_config(self, config_file):
         f = open(config_file)
@@ -144,6 +158,7 @@ class Ship:
         in_transition = False
         transition_turn = 0
         self.set_mode(self.modes[0])
+        self.mqttclient.connect(self.broker, self.port)
 
         while self.running:
             total_fuel_consumption = 0
@@ -161,6 +176,7 @@ class Ship:
             self.ship_engine.next_turn()
             for g in self.ship_generators:
                 generator_data = {
+                    'generator_name': g.get_name().replace(" ", "_").lower(),
                     'generator_rpm': g.get_rpm(),
                     'generator_output': g.get_energy_output(),
                     'generator_temperature': g.get_temperature(),
@@ -177,6 +193,24 @@ class Ship:
             time.sleep(self.simulation_speed)
             # TEST
             print(data)
+
+            # ship data
+            self.mqttclient.publish(f"/{self.ship_name}/total_fuel_consumption", round(data["total_fuel_consumption"], 4))
+            self.mqttclient.publish(f"/{self.ship_name}/fuel_level", round(data["fuel_level"], 4))
+            self.mqttclient.publish(f"/{self.ship_name}/fuel_capacity", round(data["fuel_capacity"], 4))
+
+            # engine data
+            self.mqttclient.publish(f"/{self.ship_name}/engine/engine_rpm", round(data["engine_rpm"], 4))
+            self.mqttclient.publish(f"/{self.ship_name}/engine/engine_output", round(data["engine_output"], 4))
+            self.mqttclient.publish(f"/{self.ship_name}/engine/engine_temperature", round(data["engine_temperature"], 2))
+            self.mqttclient.publish(f"/{self.ship_name}/engine/engine_fuel_consumption", round(data["engine_fuel_consumption"], 4))
+
+            # generator data
+            for g in data["generators"]:
+                self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_rpm", round(g['generator_rpm'], 4))
+                self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_output", round(g['generator_output'], 4))
+                self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_temperature", round(g['generator_temperature'], 2))
+                self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_fuel_consumption", round(g['generator_fuel_consumption'], 4))
 
     def stop_simulation(self):
         self.running = False
