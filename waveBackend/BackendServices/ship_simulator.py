@@ -109,7 +109,7 @@ class Ship:
     ship_long = 0
 
     # simulation settings
-    simulation_speed = 0.1  # this would mean that 1 second is equal to 10 turns
+    simulation_speed = 1  # 0.1 would mean that 1 second is equal to 10 turns, and 1 = 1 update per second
     operation_transition_time = 100  # 50 = 5 seconds
     simulation_turns = 0
     running = False
