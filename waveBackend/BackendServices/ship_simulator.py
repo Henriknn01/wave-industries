@@ -61,9 +61,9 @@ class Engine:
 
         # create a combination of 3 sinus waves to make the rpm's go up and down at seemingly random times
         wave = (
-                random.randrange(wave_1_base, round(wave_1_base*1.20))*(math.sin((degrees/2))/20)
-                + random.randrange(wave_2_base, round(wave_2_base*1.25))*(math.sin((degrees/3))/40)
-                + random.randrange(wave_3_base, round(wave_3_base*1.15))*(math.sin((degrees/5))/30)
+                random.randrange(wave_1_base, round(wave_1_base*1.20+1))*(math.sin((degrees/2))/20)
+                + random.randrange(wave_2_base, round(wave_2_base*1.25+1))*(math.sin((degrees/3))/40)
+                + random.randrange(wave_3_base, round(wave_3_base*1.15+1))*(math.sin((degrees/5))/30)
         )
         return b_rpm + wave
 
@@ -114,6 +114,7 @@ class Ship:
     simulation_turns = 0
     running = False
     modes = []
+    mode = None
 
     # mqtt settings
     broker = "79.160.34.197"
@@ -149,19 +150,35 @@ class Ship:
             self.ship_generators.append(g)
 
     def set_mode(self, mode: Mode):
+        self.mode = mode
         self.ship_engine.set_mode(mode)
         for g in self.ship_generators:
             g.set_mode(mode)
 
+    def get_mode(self):
+        return self.mode
+
+    def get_speed(self):
+        base_speed = self.mode.mode_base_speed
+        speed = base_speed + random.randrange(4, 9)*math.sin(math.radians(self.simulation_turns)/55)
+        return speed
+
     def start_simulation(self):
         self.running = True
-        in_transition = False
-        transition_turn = 0
         self.set_mode(self.modes[0])
         self.mqttclient.connect(self.broker, self.port)
 
+        next_mode_switch = random.randrange(500, 1000)
+
         while self.running:
             total_fuel_consumption = 0
+            if self.simulation_turns == next_mode_switch:
+                rand_num = random.randrange(0, len(self.modes))
+                rand_mode = self.modes[rand_num]
+                print(f"Mode switch: {self.mode.name} -> {rand_mode.name}")
+                self.set_mode(rand_mode)
+                next_mode_switch = random.randrange(500, 1000) + self.simulation_turns
+
             data = {
                 'engine_rpm': self.ship_engine.get_rpm(),
                 'engine_output': self.ship_engine.get_energy_output(),
@@ -171,6 +188,7 @@ class Ship:
                 'total_fuel_consumption': 0,
                 'fuel_level': self.ship_fuel_level,
                 'fuel_capacity': self.ship_fuel_capacity,
+                'speed': self.get_speed(),
             }
             total_fuel_consumption += self.ship_engine.get_fuel_consumption()
             self.ship_engine.next_turn()
@@ -198,6 +216,7 @@ class Ship:
             self.mqttclient.publish(f"/{self.ship_name}/total_fuel_consumption", round(data["total_fuel_consumption"], 4))
             self.mqttclient.publish(f"/{self.ship_name}/fuel_level", round(data["fuel_level"], 4))
             self.mqttclient.publish(f"/{self.ship_name}/fuel_capacity", round(data["fuel_capacity"], 4))
+            self.mqttclient.publish(f"/{self.ship_name}/speed", round(data["speed"], 2))
 
             # engine data
             self.mqttclient.publish(f"/{self.ship_name}/engine/engine_rpm", round(data["engine_rpm"], 4))
