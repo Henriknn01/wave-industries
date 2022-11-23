@@ -118,12 +118,12 @@ class Ship:
     # mqtt settings
     broker = "79.160.34.197"
     port = 1883
+
     def on_publish(client, userdata, result):  # create function for callback
         # print("data published \n")
         pass
     mqttclient = paho.Client("ship_client")  # create client object
     mqttclient.on_publish = on_publish  # assign function to callback
-
 
     def load_config(self, config_file):
         f = open(config_file)

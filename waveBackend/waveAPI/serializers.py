@@ -14,7 +14,11 @@ class MqttStreamSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['ship', 'mqtt_path']
 
 
-class EntrySerializer(serializers.HyperlinkedModelSerializer):
+class EntrySerializer(serializers.ModelSerializer):
+    stream = serializers.SlugRelatedField(
+        queryset=MqttStream.objects.all(),
+        slug_field='mqtt_path'
+    )
     class Meta:
         model = Entry
         fields = ['stream', 'timestamp', 'data']
