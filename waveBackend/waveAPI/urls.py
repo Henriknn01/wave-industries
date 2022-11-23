@@ -19,7 +19,7 @@ from django.urls import path, include
 
 router = routers.DefaultRouter()
 router.register(r'ships', ShipViewSet)
-router.register(r'mqtt-streams', MqttStreamViewSet)
+router.register(r'mqtt-streams', MqttStreamViewSet, basename="mqtt-view")
 router.register(r'entries', EntryViewSet)
 
 urlpatterns = [

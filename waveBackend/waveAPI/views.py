@@ -4,8 +4,8 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from .serializers import ShipSerializer, MqttStreamSerializer, EntrySerializer
 
-
 # Create your views here.
+
 
 class ShipViewSet(viewsets.ModelViewSet):
     queryset = Ship.objects.all()
