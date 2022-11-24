@@ -102,56 +102,58 @@ Gunnerus was a natural choice to simulate data for since its an NTNU ship
 
 <a name="workflow"></a>
 #  3. Process and workflow #
-add stuff here
+what did we plan to achive workflow vice, sprints and sh
 
 <a name="Organization"></a>
 ## 3.i Organization ##
-stuff
+add how the team solved tasks, who did what, distrubution and such
 
 <a name="Sprint"></a>
 ## 3.ii Sprint Work ##
-stuff
+PDF of all sprints here
 
  - - - -
 
 
 <a name="Architecture"></a>
 #  4. Architecture #
-add stuff here
+explain goals of architecture, why did we do what we did.
 
 <a name="Overview"></a>
 ## 4.i Overview ##
 <img src="images/overview.png" alt="drawing" height="500"/>
 
+explain overview image
+
 <a name="Protocols"></a>
 ## 4.ii Protocols ##
-stuff
+what protocols did we use to solve issues, how does everything talk to echoter
 
 <a name="Security"></a>
 ## 4.iii Security ##
-stuff
+what did we do to ensure security of application
 
  - - - -
 
 <a name="solution"></a>
 #  5. Indepth solution #
-add stuff here
+explain system as a whole?
 
 <a name="Frontend"></a>
 ## 5.i Frontend ##
-stuff
+add knowlage about frontend development, what frameworks, what graphing, what did we achive
 
 <a name="Backend"></a>
 ## 5.ii Backend ##
-stuff
+add knowlage about backend, how mqtt is talking to application, how is database setup, explain sql stuff
 
 <a name="MQTT"></a>
 ## 5.iii MQTT and ship ##
-stuff
+Add knowlage about MQTT setup, how its connected on the theoretical ship
 
 <a name="good"></a>
 ## 5.iiii What makes this a good solution ##
-stuff
+add features that we feel went well, and deserves a higher grade
 
  - - - -
 
@@ -166,7 +168,7 @@ if we had more time we would x
 
 <a name="statistical"></a>
 ## 6.iii statistical analysis ##
-stuff
+what statistical models could we use to further expand the platform
 
 <a name="Potential"></a>
 ## 6.ii Potential ##
