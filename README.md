@@ -41,6 +41,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 
+ - - - -
+
 
 <a name="report"></a>
 # Project report #
