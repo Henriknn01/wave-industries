@@ -1,3 +1,48 @@
+## Table of contents ##
+This readme is split in two
+
+the first part is the readme you will find in a standard git repo, explains building the code and standards used
+
+**the secound part is the report to be read by sensor and teachers**
+
+
+1. [Project Readme](#Readme "go to Readme")
+2. [Project report](#report "go to report")
+
+
+
+<a name="Readme"></a>
+# Project readme #
+
+## wave_frontend
+
+### Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+
+<a name="report"></a>
 # Project report #
  ## Authors ##
 Arunanthi Gunapalan
@@ -35,8 +80,8 @@ Rafal Bieniek
 
 6. [Future work](#Future "go to Future")
    1. [Practical](#Practical "go to Practical")
-   2. [Potential](#Potential "go to Potential")
-   3. [statistical analysis](#statistical "go to statistical")
+   2. [statistical analysis](#statistical "go to statistical")
+   3. [Potential](#Potential "go to Potential")
    4. [Market](#Market "go to Market")
 
 
@@ -71,9 +116,14 @@ With our proposed solution we aim to hit a more efficent and green shipping indu
 Wave introduces Management consoles for both the engineering teams and management teams.
 Connecting ships together with new technology will lead to a more Economic, efficent and green shipping industry.
 
+<img src="images/frontpage.png" alt="drawing" height="460"/>
+
+<img src="images/dashboard.png" alt="drawing" height="460"/>
 
 
+<img src="images/dashboard2.png" alt="drawing" height="460"/>
 
+this proposed dashboard will give the user insight into statistics of the ship, such as maintanance, greenhouse gas tax and live stats of engine.
 
  - - - -
 
@@ -167,11 +217,11 @@ if we had more time we would x
 
 
 <a name="statistical"></a>
-## 6.iii statistical analysis ##
+## 6.ii statistical analysis ##
 what statistical models could we use to further expand the platform
 
 <a name="Potential"></a>
-## 6.ii Potential ##
+## 6.iii Potential ##
 Future plans if this was scaled bigger
 
 <a name="Market"></a>
