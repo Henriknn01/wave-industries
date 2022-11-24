@@ -213,23 +213,23 @@ class Ship:
             print(data)
 
             # ship data
-            self.mqttclient.publish(f"/{self.ship_name}/total_fuel_consumption", round(data["total_fuel_consumption"], 4))
-            self.mqttclient.publish(f"/{self.ship_name}/fuel_level", round(data["fuel_level"], 4))
-            self.mqttclient.publish(f"/{self.ship_name}/fuel_capacity", round(data["fuel_capacity"], 4))
-            self.mqttclient.publish(f"/{self.ship_name}/speed", round(data["speed"], 2))
+            self.mqttclient.publish(f"/{self.ship_name}/total_fuel_consumption", round(data["total_fuel_consumption"], 4), qos=2)
+            self.mqttclient.publish(f"/{self.ship_name}/fuel_level", round(data["fuel_level"], 4), qos=2)
+            self.mqttclient.publish(f"/{self.ship_name}/fuel_capacity", round(data["fuel_capacity"], 4), qos=2)
+            self.mqttclient.publish(f"/{self.ship_name}/speed", round(data["speed"], 2), qos=2)
 
             # engine data
-            self.mqttclient.publish(f"/{self.ship_name}/engine/engine_rpm", round(data["engine_rpm"], 4))
-            self.mqttclient.publish(f"/{self.ship_name}/engine/engine_output", round(data["engine_output"], 4))
-            self.mqttclient.publish(f"/{self.ship_name}/engine/engine_temperature", round(data["engine_temperature"], 2))
-            self.mqttclient.publish(f"/{self.ship_name}/engine/engine_fuel_consumption", round(data["engine_fuel_consumption"], 4))
+            self.mqttclient.publish(f"/{self.ship_name}/engine/engine_rpm", round(data["engine_rpm"], 4), qos=2)
+            self.mqttclient.publish(f"/{self.ship_name}/engine/engine_output", round(data["engine_output"], 4), qos=2)
+            self.mqttclient.publish(f"/{self.ship_name}/engine/engine_temperature", round(data["engine_temperature"], 2), qos=2)
+            self.mqttclient.publish(f"/{self.ship_name}/engine/engine_fuel_consumption", round(data["engine_fuel_consumption"], 4), qos=2)
 
             # generator data
             for g in data["generators"]:
-                self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_rpm", round(g['generator_rpm'], 4))
-                self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_output", round(g['generator_output'], 4))
-                self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_temperature", round(g['generator_temperature'], 2))
-                self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_fuel_consumption", round(g['generator_fuel_consumption'], 4))
+                self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_rpm", round(g['generator_rpm'], 4), qos=2)
+                self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_output", round(g['generator_output'], 4), qos=2)
+                self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_temperature", round(g['generator_temperature'], 2), qos=2)
+                self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_fuel_consumption", round(g['generator_fuel_consumption'], 4), qos=2)
 
     def stop_simulation(self):
         self.running = False
