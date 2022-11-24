@@ -24,7 +24,7 @@ def get_topics():
 def post_message(msg, topic):
     data = {
         "data": msg,
-        "timestamp": datetime.now().timestamp(),
+        "timestamp": datetime.now().isoformat(),
         "stream": topic
     }
     r = requests.post(API_ENTRIES_URL+"?format=json", data=data)

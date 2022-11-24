@@ -12,7 +12,7 @@ class Ship(models.Model):
 
 class MqttStream(models.Model):
     ship = models.ForeignKey(Ship, on_delete=models.CASCADE)
-    mqtt_path = models.CharField(max_length=256)
+    mqtt_path = models.CharField(max_length=256, unique=True)
 
     def __str__(self):
         return self.mqtt_path
@@ -20,7 +20,7 @@ class MqttStream(models.Model):
 
 class Entry(models.Model):
     stream = models.ForeignKey(MqttStream, on_delete=models.CASCADE)
-    timestamp = models.FloatField()
+    timestamp = models.DateTimeField()
     data = models.CharField(max_length=512)
 
     def __str__(self):

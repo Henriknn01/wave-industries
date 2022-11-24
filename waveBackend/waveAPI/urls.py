@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from rest_framework import routers
-from .views import ShipViewSet, MqttStreamViewSet, EntryViewSet
+from .views import ShipViewSet, MqttStreamViewSet, EntryViewSet, EntryStreamView
 from django.urls import path, include
 
 router = routers.DefaultRouter()
@@ -24,4 +24,5 @@ router.register(r'entries', EntryViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('entries-stream/', EntryStreamView.as_view())
 ]
