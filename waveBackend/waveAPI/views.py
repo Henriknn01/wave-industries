@@ -10,24 +10,36 @@ from .serializers import ShipSerializer, MqttStreamSerializer, EntrySerializer
 
 
 class ShipViewSet(viewsets.ModelViewSet):
+    """
+    REST API ship view set
+    """
     queryset = Ship.objects.all()
     serializer_class = ShipSerializer
     permission_classes = [permissions.AllowAny]
 
 
 class MqttStreamViewSet(viewsets.ModelViewSet):
+    """
+    REST API MqttStream view set
+    """
     queryset = MqttStream.objects.all()
     serializer_class = MqttStreamSerializer
     permission_classes = [permissions.AllowAny]
 
 
 class EntryViewSet(viewsets.ModelViewSet):
+    """
+    REST API Entry view set
+    """
     queryset = Entry.objects.all()
     serializer_class = EntrySerializer
     permission_classes = [permissions.AllowAny]
 
 
 class EntryStreamView(generics.ListAPIView):
+    """
+    REST API list view that displays data from specified mqtt stream
+    """
     serializer_class = EntrySerializer
 
     def get_queryset(self):
