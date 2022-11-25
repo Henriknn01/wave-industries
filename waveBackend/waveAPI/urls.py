@@ -22,6 +22,10 @@ router.register(r'ships', ShipViewSet)
 router.register(r'mqtt-streams', MqttStreamViewSet, basename="mqtt-view")
 router.register(r'entries', EntryViewSet)
 
+
+"""
+Define url patterns here.
+"""
 urlpatterns = [
     path('', include(router.urls)),
     path('entries-stream/', EntryStreamView.as_view())
