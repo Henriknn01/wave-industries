@@ -7,17 +7,11 @@ import json
 import paho.mqtt.client as paho
 
 
-
-# TODO: implement noise to the signals
-#  link: https://stackoverflow.com/questions/14058340/adding-noise-to-a-signal-in-python
-
-# TODO: implement navigatinal data + noise on the navigational data to simulate non-perfect navigation
-#  + wind and wave disturbance
-
-# TODO: USE SINUS WAVES for everything except nav data
-
-# TODO: add effects of wave and wind to the boat
 class Mode:
+    """
+    The mode class contains information about the mode, such as base_rpm etc.
+    This is then used in other methods to calculate other values.
+    """
     base_rpm = 0
     base_fuel_consumption = 0
     base_temperature = 0
@@ -47,10 +41,21 @@ class Engine:
         self.mode = None
 
     def set_mode(self, mode: Mode):
+        """
+        Sets the engine mode to the specified mode.
+        :param mode: Mode to use
+        """
         self.mode = mode
 
     def get_rpm(self):
         # Used as base numbers for the amplifications of the sinus waves
+        """
+        Gets the engines current rpm.
+        Multiple sinus waves are added together to simulate realistic changes to the engine rpm.
+        Once we have the sinus waves combined we add it to the current engine mode's base rpm.
+
+        :return: Engine rpm
+        """
         b_rpm = self.mode.base_rpm if self.mode is not None else 0
         wave_1_base = b_rpm
         wave_2_base = (b_rpm + (round(b_rpm * 0.6)))
@@ -68,32 +73,59 @@ class Engine:
         return b_rpm + wave
 
     def get_fuel_consumption(self):
+        """
+        Gets the current fuel consumption for the engine in liters per hour.
+        The method combines multiple sinus waves together and then adds the base fuel consumption to this wave.
+        a random number between 5 and 7 is selected as the wave amplification, this is done to simulate noise from the sensor.
+
+        :return: Current fuel consumption in liters per hour
+        """
         # used for the sinus waves
         degrees = math.radians(self.simulation_turn)
 
         # create a combination of 3 sinus waves to make the fuel consumption to go up and down
-        wave = 5*((math.sin((degrees / 3)))
+        wave = random.randrange(5, 7)*((math.sin((degrees / 3)))
                 + (math.sin((degrees / 6)))
                 + (-math.sin(((degrees / 2) * math.pi) / 3))
         )
         return self.mode.base_fuel_consumption + wave
 
     def get_temperature(self):
+        """
+        Gets the current engine temperature in celsius.
+        :return: Current engine temperature in celsius
+        """
         return self.mode.base_temperature + (self.mode.base_temperature*0.2)*math.sin(math.radians(self.simulation_turn+50)/2)
 
     def get_energy_output(self):
+        """
+        Gets the current engine energy output in kWh.
+        :return: current engine energy output in kWh
+        """
         return self.mode.base_energy_output + (self.mode.base_temperature*0.2)*(math.sin(math.radians(self.simulation_turn+50)/2)
                                                                     * math.sin(math.radians(self.simulation_turn+32)/3))
 
     def get_name(self):
+        """
+        Gets the engine name.
+        :return: engine name
+        """
         return self.name
 
     def next_turn(self):
+        """
+        Increases the simulation turn by one.
+        """
         self.simulation_turn += 1
 
 
 # To make things simple we will only simulate one engine and one generator
 class Ship:
+    """
+    Ship class
+
+    This is the main class of the simulator.
+    """
     ship_name = "Undefined"
     # Fuel vars
     ship_fuel_capacity = 0
@@ -110,14 +142,13 @@ class Ship:
 
     # simulation settings
     simulation_speed = 1  # 0.1 would mean that 1 second is equal to 10 turns, and 1 = 1 update per second
-    operation_transition_time = 100  # 50 = 5 seconds
     simulation_turns = 0
     running = False
     modes = []
     mode = None
 
     # mqtt settings
-    broker = "79.160.34.197"
+    broker = "79.160.34.197"  # CHANGE: change this to your MQTT broker
     port = 1883
 
     def on_publish(client, userdata, result):  # create function for callback
@@ -127,6 +158,11 @@ class Ship:
     mqttclient.on_publish = on_publish  # assign function to callback
 
     def load_config(self, config_file):
+        """
+        Loads ship variables from the specified config file, see ship_config.json file for example config.
+
+        :param config_file: json config file
+        """
         f = open(config_file)
         data = json.load(f)
         self.ship_name = data['name']
@@ -150,20 +186,37 @@ class Ship:
             self.ship_generators.append(g)
 
     def set_mode(self, mode: Mode):
+        """
+        Sets the ship mode to specified mode of type Mode.
+        :param mode: Mode object
+        """
         self.mode = mode
         self.ship_engine.set_mode(mode)
         for g in self.ship_generators:
             g.set_mode(mode)
 
     def get_mode(self):
+        """
+        Gets the current ship mode.
+
+        :return: current ship mode
+        """
         return self.mode
 
     def get_speed(self):
+        """
+        Returns the vessels speed in knots.
+
+        :return: vessel speed
+        """
         base_speed = self.mode.mode_base_speed
         speed = base_speed + random.randrange(4, 9)*math.sin(math.radians(self.simulation_turns)/55)
         return speed
 
     def start_simulation(self):
+        """
+        Main simulation method. This is responsible for updating variables and publishing mqtt messages to the broker.
+        """
         self.running = True
         self.set_mode(self.modes[0])
         self.mqttclient.connect(self.broker, self.port)
@@ -232,6 +285,9 @@ class Ship:
                 self.mqttclient.publish(f"/{self.ship_name}/generators/{g['generator_name']}/engine_fuel_consumption", round(g['generator_fuel_consumption'], 4), qos=2)
 
     def stop_simulation(self):
+        """
+        Stops the simulation.
+        """
         self.running = False
 
 
