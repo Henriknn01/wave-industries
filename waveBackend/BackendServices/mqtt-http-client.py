@@ -16,6 +16,7 @@ topics = []
 
 # TODO: implement logging
 
+
 def get_topics():
     """
     Gets the topics available in the api and adds them to the topic list.
