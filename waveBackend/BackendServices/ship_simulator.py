@@ -148,7 +148,7 @@ class Ship:
     mode = None
 
     # mqtt settings
-    broker = "79.160.34.197"  # CHANGE: change this to your MQTT broker
+    broker = "test.mosquitto.org"  # "79.160.34.197"  # CHANGE: change this to your MQTT broker
     port = 1883
 
     def on_publish(client, userdata, result):  # create function for callback
