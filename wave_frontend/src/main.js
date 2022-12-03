@@ -3,12 +3,16 @@ import App from './App.vue'
 import './index.css'
 import {createRouter, createWebHashHistory} from 'vue-router';
 import HomeView from "./views/HomeView";
-import AdminView from "@/views/AdminView";
+import ShipDashboardView from "@/views/ShipDashboardView";
 import VueApexCharts from 'vue3-apexcharts';
+import tmpView from "@/views/tmpView";
+import DashboardView from "@/views/DashboardView";
 
 const routes = [
-    { path: '/', component: HomeView },
-    { path: '/admin/', component: AdminView },
+    { path: '/', name: 'home', component: HomeView },
+    { path: '/dashboard', name: 'dahboard', component: DashboardView },
+    { path: '/dashboard/:id', name: 'ship-dashboard', component: ShipDashboardView },
+    { path: '/tmp', component: tmpView }
 ]
 
 const router = createRouter({
@@ -18,6 +22,8 @@ const router = createRouter({
 })
 
 const app = createApp(App)
+
+app.config.globalProperties.api_url = "http://127.0.0.1:8000/"
 app.use(VueApexCharts);
 app.use(router)
 //createApp(App)
