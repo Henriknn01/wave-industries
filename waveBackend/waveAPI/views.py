@@ -1,10 +1,14 @@
 from datetime import datetime, timedelta
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 from .models import Ship, MqttStream, Entry
 from django.shortcuts import render
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, status
 from rest_framework import permissions
-from .serializers import ShipSerializer, MqttStreamSerializer, EntrySerializer
+from .serializers import ShipSerializer, MqttStreamSerializer, EntrySerializer, ShipSummarySerializer
+from rest_framework.views import APIView
 
 # Create your views here.
 
@@ -56,4 +60,16 @@ class EntryStreamView(generics.ListAPIView):
             timestamp__gte=date_from,
             timestamp__lte=date_to,
         )
+
+
+class ShipSummary(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, pk):
+        try:
+            instance = Ship.objects.get(id=pk)
+            serializer = ShipSummarySerializer(instance)
+            return Response(serializer.data)
+        except Ship.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
