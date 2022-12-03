@@ -154,8 +154,17 @@ class Ship:
     def on_publish(client, userdata, result):  # create function for callback
         # print("data published \n")
         pass
+
+    def on_connect(client, userdata, flags, rc):
+        """
+        On connect to the MQTT broker subscribe to topics in the topic list.
+        """
+        print(f"connecting to broker")
+        print(f"mqtt broker returned code: {rc}")
+
     mqttclient = paho.Client("ship_client")  # create client object
     mqttclient.on_publish = on_publish  # assign function to callback
+    mqttclient.on_connect = on_connect
 
     def load_config(self, config_file):
         """
@@ -219,7 +228,9 @@ class Ship:
         """
         self.running = True
         self.set_mode(self.modes[0])
-        self.mqttclient.connect(self.broker, self.port)
+        self.mqttclient.connect(self.broker, self.port, 60)
+        self.mqttclient.loop_start()
+        print(f"mqtt connected: {self.mqttclient.is_connected()}")
 
         next_mode_switch = random.randrange(500, 1000)
 
