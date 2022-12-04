@@ -213,6 +213,9 @@ class Ship:
         speed = base_speed + random.randrange(4, 9)*math.sin(math.radians(self.simulation_turns)/55)
         return speed
 
+    def get_heading(self):
+        return 180+180*(math.sin(math.radians(self.simulation_turns)))
+
     def start_simulation(self):
         """
         Main simulation method. This is responsible for updating variables and publishing mqtt messages to the broker.
@@ -220,6 +223,7 @@ class Ship:
         self.running = True
         self.set_mode(self.modes[0])
         self.mqttclient.connect(self.broker, self.port)
+        self.mqttclient.loop_start()
 
         next_mode_switch = random.randrange(500, 1000)
 
@@ -242,6 +246,7 @@ class Ship:
                 'fuel_level': self.ship_fuel_level,
                 'fuel_capacity': self.ship_fuel_capacity,
                 'speed': self.get_speed(),
+                'heading': self.get_heading()
             }
             total_fuel_consumption += self.ship_engine.get_fuel_consumption()
             self.ship_engine.next_turn()
@@ -270,6 +275,7 @@ class Ship:
             self.mqttclient.publish(f"/{self.ship_name}/fuel_level", round(data["fuel_level"], 4), qos=2)
             self.mqttclient.publish(f"/{self.ship_name}/fuel_capacity", round(data["fuel_capacity"], 4), qos=2)
             self.mqttclient.publish(f"/{self.ship_name}/speed", round(data["speed"], 2), qos=2)
+            self.mqttclient.publish(f"/{self.ship_name}/heading", round(data["heading"], 2), qos=2)
 
             # engine data
             self.mqttclient.publish(f"/{self.ship_name}/engine/engine_rpm", round(data["engine_rpm"], 4), qos=2)
@@ -289,6 +295,7 @@ class Ship:
         Stops the simulation.
         """
         self.running = False
+        self.mqttclient.loop_stop()
 
 
 if __name__ == "__main__":
