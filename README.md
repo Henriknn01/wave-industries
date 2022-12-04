@@ -254,14 +254,18 @@ if we had more time we would x
 
 <a name="statistical"></a>
 ## 6.ii statistical analysis ##
-what statistical models could we use to further expand the platform
+Predictive maintenance is nothing more than preventative maintenance based on the equipment conditions. There are several ways of estimating equipment conditions such as a function that can calculate the mean time to failure of a component or a system. 
+We can also employ condition-based maintenance which is a predictive maintenance scheme that can predict when a failure will occur. In order to do that we could use a recurrent neural network.
 
+For other statistical analysis such as hydrodynamic drag we could use simple statistical models such as linear regression. 
+
+Although we need a good understanding of component behavior before and during a failure in order to estimate these factors so more real-world data and future testing is required.
 <a name="Potential"></a>
-## 6.iii Potential ##
-Future plans if this was scaled bigger
+## 6.iii Market and Potential ##
+<img src="images/traffic.png" alt="drawing" height="320">
+This software was made with the intention of catering to the marine shipping industry market. Given that 58 000 merchant ships are travelling the sea at all times even the most minor improvements in fuel efficiency could potentially save a lot of money. Additionally, it would help reduce the emissions produced by the shipping industry and could in turn bring in the interest of government organizations interested in benefitting the planet. 
 
-<a name="Market"></a>
-## 6.iiii Market ##
-what markets could we aim form bla bla bla
+Another potential market would be the Navy. Given the importance of fuel efficiency in the field, due to the inability to know when the next refueling will happen, it’s clear to see how software with the potential to improve that aspect would be highly sought after.
+
 
  - - - -
