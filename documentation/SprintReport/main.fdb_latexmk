@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1669166064 "main.tex" "main.pdf" "main" 1669166064
+["pdflatex"] 1670159305 "main.tex" "main.pdf" "main" 1670159305
   "/etc/texmf/web2c/texmf.cnf" 1662462690 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/bace/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1662732664 14040 95666e05b743f166253ef955b0c331e2 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -28,9 +28,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1662974900 128028 f533b797fba58d231669ea19e894e23e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1666448753 4791333 fd1118d68ad8d17fc602fd915d7a8bb6 ""
-  "main.aux" 1669239821 722 69d94011e2c75f9961021549fff42510 "pdflatex"
-  "main.tex" 1669239834 2537 757c345db6f69fffb854c289af0ba45a ""
+  "main.aux" 1670159216 722 930228f079abc7d9e7712da6798d1ad5 "pdflatex"
+  "main.tex" 1670159304 3515 e01d89a361513ff0b83c6d81722f1375 ""
   (generated)
-  "main.aux"
-  "main.pdf"
   "main.log"
+  "main.pdf"
+  "main.aux"
