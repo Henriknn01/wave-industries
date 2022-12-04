@@ -47,13 +47,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 <a name="report"></a>
 # Project report #
  ## Authors ##
-Arunanthi Gunapalan
+| Name      | Github username  | Role                                               |
+|-----------|------------------|----------------------------------------------------|
+| Arunanthi Gunapalan    | nanthi13         | documentation and research                         |
+| Gard Huse Storebø | 0xBACE and gardh | MQTT broker developer, documantation, scrum master |
+| Henrik Norheim Nysæther | Henriknn01       | Main Developer                                     |
+| Rafal Bieniek | Rafixx11         | documentation and research                         |
 
-Gard Huse Storebø
-
-Henrik Norheim Nysæther
-
-Rafal Bieniek
 
 ### Table of Contents ###
 1. [Background](#Background "go to Background")
@@ -125,7 +125,7 @@ Connecting ships together with new technology will lead to a more Economic, effi
 
 <img src="images/dashboard2.png" alt="drawing" height="460"/>
 
-this proposed dashboard will give the user insight into statistics of the ship, such as maintanance, greenhouse gas tax and live stats of engine.
+this proposed dashboard will give the user insight into statistics of the ship, such as maintanance, greenhouse gas tax and live stats of the engine.
 
  - - - -
 
@@ -137,13 +137,24 @@ Wave Industries has between the group members over 10 years experience in the of
 Thus aiming for the shipping industry was natural.
 To further add to our project we discussed features we needed to hit to include Statistics and databases.
 
+A vessel alerady uses PLC(Programmable logic controller) to gather data about the engine, and uses this data to control systems aboard the vessel.
+the thought process is that we hook into this PLC controller to gether data, then process and compress it to send it to centeral server.
+The data can then be processed and shown to costumers in an easy-to-understand format.
+
+the MQTT broker we decided to use after some reaserch was mosquitto, We decided to use Mosquitto because of its large knowlage base about config setup, and community help. This made config setup easy to setup in a shorter timespan., 
+although we looked at competitors such as HIVE which is aimed mainly at commercial setups.
+Hive would likley make more sense to use if we were to scale this project up, sience it includes easy setups for load balance and more security features.
+
+
+
 <a name="plan"></a>
 ## 2.i Plans ##
 Out plan was creating a ship monitoring system using the MQTT protocol.
 
 We first blocked out feature plan of the project in our [FirstDraft](documentation/firstDraft.pdf) document. 
 The draft lists challanges that we were expecting for this project, aswell as early architecture drawings of our solutions.
-Already at this stage however we have made a clear GANT diagram to understand how much work is actaully possible in the timeframe given.
+Already at this stage we made a clear GANT diagram to understand how much work is actaully possible in the timeframe given.
+
 <img src="images/gant.png" alt="drawing" height="200"/>
 <img src="images/timeframe.png" alt="drawing" height="200"/>
 
@@ -155,7 +166,6 @@ Gunnerus was a natural choice to simulate data for since its an NTNU ship.
 We made a [software platform](waveBackend/BackendServices/ship_simulator.py) that can emulate values from the ship.
 This Simulator uses a [Config file](waveBackend/BackendServices/ship_config.json) that makes it easy to setup new ships and configurations.
 This allows us to test differnt ship layouts in a rapid test enviorment.
-
 
  - - - -
 
@@ -177,21 +187,37 @@ PDF of all sprints here
 
 <a name="Architecture"></a>
 #  4. Architecture #
-explain goals of architecture, why did we do what we did.
+The MQTT protocol is alerady designed for low-bandwidth solutions in mind. One computer is installed per ship that gathers data abourd the vessel.
+The Setup can be costumized to fit the costumers needs aboard the ship. the MQTT client forwards all the data gathered to the broker.
+The MQTT subscriber gathers the data from each ship and uses the REST API to forward this into our database running SQLite.
+The frontend can then query the data from database for each vessel, and process this into ready graphs in the frontend veiw.
 
 <a name="Overview"></a>
 ## 4.i Overview ##
 <img src="images/overview.png" alt="drawing" height="500"/>
 
-explain overview image
+Each ship is setup with MQTT clients to send data to the broker via satelite connection, then the subscriber gathers the data to show to the frontend via a webpage.
 
 <a name="Protocols"></a>
 ## 4.ii Protocols ##
-what protocols did we use to solve issues, how does everything talk to echoter
+The main goal of the MQTT protocol is to reduce overhead of packet transportaion. The MQTT protocol uses the TCP stack as a transmission substrate.
+MQTT protocol implements a publish-subscrive paradigm, This decouples a client that sends messages as a publisher and the client that recives as subscriber.
+MQTT is an asynchronous protocol, which means it does not block while the client waits.
+
+The main components of MQTT is the MQTT broker. The broaker is dispatching messages to the subscribers.
+
+In our implementation of this setup.
+MQTT clients send payloads to different topics on the MQTT broker, this is used to catgorize different parts of the ship,
+for example a message could come from /gunnerus/engineroom/temp1
+. 
+We can see that this message was sent by the gunnerus vessel and the statistics gathered was a temprature sensor from engineroom.
+
+
 
 <a name="Security"></a>
 ## 4.iii Security ##
 what did we do to ensure security of application
+We used TLS encryption on the messages. Since the data we are handeling can be sensetive such as location this was needed, MQTT broker we used
 
  - - - -
 
