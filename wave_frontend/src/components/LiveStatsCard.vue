@@ -16,17 +16,17 @@
         </div>
         <div class="row-span-1 col-span-1 flex align-middle">
           <div class="m-auto">
-            <h1 class="text-xl"><span class="font-bold">Speed:</span> 10 knots</h1>
+            <h1 class="text-xl"><span class="font-bold">Speed:</span> 23 knots</h1>
           </div>
         </div>
         <div class="row-span-1 col-span-1 flex align-middle">
           <div class="m-auto">
-            <h1 class="text-xl"><span class="font-bold">Weather:</span> weather</h1>
+            <h1 class="text-xl"><span class="font-bold">Weather:</span> Clear</h1>
           </div>
         </div>
         <div class="row-span-1 col-span-1 flex align-middle">
           <div class="m-auto">
-            <h1 class="text-xl"><span class="font-bold">Destination:</span> unknown</h1>
+            <h1 class="text-xl"><span class="font-bold">Destination:</span> Ålesund</h1>
           </div>
         </div>
       </div>

@@ -12,11 +12,10 @@
             <h1 class="text-5xl font-extrabold uppercase text-white">R/V Gunnerus</h1>
           </div>
         </div>
-        <ShortInfoCard content="2000 kW h" description="Energy produced the last 24 hours"/>
-        <ShortInfoCard content="100,000 Liters" description="Fuel consumed the last 24 hours"/>
-        <ShortInfoCard content="1337 NM" description="Distance traveled the last 24 hours"/>
-        <ShortInfoCard content="100 Tons" description="Co2 produced last 24 hours"/>
-
+        <ShortInfoCard content="6202 kW h" description="Energy produced the last 24 hours"/>
+        <ShortInfoCard content="31,000 Liters" description="Fuel consumed the last 24 hours"/>
+        <ShortInfoCard content="133.7 NM" description="Distance traveled the last 24 hours"/>
+        <ShortInfoCard content="310 L/nm" description="Liters per nauticle mile the last 24 hours"/>
         <div class="row-span-3 col-span-2 rounded shadow-md text-left p-4 bg-white">
           <h2 class="text-2xl font-bold p-2">Fuel consumption <span class="text-sm font-light">(liters per hour)</span></h2>
           <div id="chart">
@@ -24,9 +23,9 @@
           </div>
         </div>
         <div class="row-span-3 col-span-2 rounded shadow-md text-left p-4 bg-white">
-          <h2 class="text-2xl font-bold p-2">Location <span class="font-light text-[0.7rem]">[LAT: 47.41322, LONG: -1.219482]</span></h2>
+          <h2 class="text-2xl font-bold p-2">Location <span class="font-light text-[0.7rem]">[LAT: 62.47210, LONG: 6.2355]</span></h2>
           <div style="height: 85%">
-            <l-map ref="map h-" v-model:zoom="zoom" :center="[47.41322, -1.219482]">
+            <l-map ref="map h-" v-model:zoom="zoom" :center="[62.47210961589754, 6.235595525390807]">
               <l-tile-layer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   layer-type="base"
@@ -36,17 +35,16 @@
             </l-map>
           </div>
         </div>
-        <radial-chart-basic title="Fuel efficiency" value=100 chart-color="#00FF89"/>
+        <radial-chart-basic title="Fuel efficiency" value=67 chart-color="#00FF89"/>
         <radial-chart-basic title="Fuel level" value=15 chart-color="#FF3131"/>
         <maintenance-card/>
         <live-stats-card/>
         <ShortInfoCard content="210,320 Kr" description="NOx emissions tax so far"/>
-
-
-        <ShortInfoCard content="410 L/nm" description="Liters per nauticle mile the last 24 hours"/>
         <ShortInfoCard content="153,102 Kr" description="Co2 emissions tax so far"/>
-
-
+        <ShortInfoCard content="75 Kg" description="Nox produced last 24 hours"/>
+        <ShortInfoCard content="100 Kg" description="Co2 produced last 24 hours"/>
+        <ShortInfoCard content="4 🏴‍☠️ " description="Pirate attacks fought off so far"/>
+        <ShortInfoCard content="Coming soon" description="More statistics coming soon"/>
       </div>
     </div>
   </div>
@@ -62,7 +60,7 @@ import MaintenanceCard from "@/components/MaintenanceCard";
 import LiveStatsCard from "@/components/LiveStatsCard";
 
 export default {
-  name: "AdminView",
+  name: "ShipDashboardView",
   components: {
     LiveStatsCard,
     MaintenanceCard,
@@ -72,6 +70,8 @@ export default {
     LMap,
     LTileLayer,
   },
+
+
   data: function() {
     return {
       series: [{
@@ -81,6 +81,7 @@ export default {
         name: 'Engine 2',
         data: [11, 32, 45, 32, 34, 52, 41]
       }],
+      raw_data: 'test123',
       chartOptions: {
         chart: {
           height: 350,
@@ -111,7 +112,7 @@ export default {
       geojsonOptions: {
         // Options that don't rely on Leaflet methods.
       },
-      zoom: 2,
+      zoom: 10,
     }
   },
   async beforeMount() {
