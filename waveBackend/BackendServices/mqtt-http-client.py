@@ -5,7 +5,7 @@ import requests
 
 # Set client variables
 CLIENT_ID = "vessel-name"  # Change to your preferred client id
-BROKER_HOST = "79.160.34.197"  # Change to your MQTT broker ip
+BROKER_HOST = "next.0xbace.io"  # Change to your MQTT broker ip
 BROKER_PORT = 1883
 KEEP_ALIVE = 60
 
@@ -23,7 +23,7 @@ def get_topics():
     """
     r = requests.get(API_STREAMS_URL+"?format=json")
     response_list = r.json()
-    for topic in response_list:
+    for topic in response_list["results"]:
         topics.append(topic["mqtt_path"])
 
 
