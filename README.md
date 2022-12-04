@@ -249,7 +249,22 @@ add stuff here
 
 <a name="Practical"></a>
 ## 6.i Practical ##
-if we had more time we would x
+Given more time we would have implemented more features and improvements that we did not consider vital for this project.
+
+Authentication to the website and Rest API – To ensure users have access to the data they are trying to view.
+
+Improve Rest API endpoint design/structure – To improve the efficiency of the API calls
+
+Improve security of MQTT by adding features such as password protected connections – To secure the sensitive data relayed by the MQTT client and broker
+
+Make simulator more realistic – To further improve our statistical analysis
+
+Make the backend and frontend setup process more streamlined with the use of containers such as docker – To make the installation process faster in the future
+
+General site improvements such as streamlined expansion of fleets – To further enhance the user experience and the ease of use of the website
+
+Different ways to display the data – To give the user a more in depth view of the data with more ways of visualizing
+
 
 
 <a name="statistical"></a>
