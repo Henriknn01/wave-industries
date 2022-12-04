@@ -283,4 +283,12 @@ This software was made with the intention of catering to the marine shipping ind
 Another potential market would be the Navy. Given the importance of fuel efficiency in the field, due to the inability to know when the next refueling will happen, it’s clear to see how software with the potential to improve that aspect would be highly sought after.
 
 
+<a name="Challenges"></a>
+## 6.iiii Challenges  ##
+
+Gaining access to the data from vendors – Even though a vessel is owned by the company that purchased it, the system and component providers own the data from the systems. As this data can contain valuable information, system providers are reluctant to release it.
+
+Developing a signal processing algorithm in order to obtain usable data from flawed input. These flaws can range from wild point in the data as well as frozen signal. 
+
+
  - - - -
