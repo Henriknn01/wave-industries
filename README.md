@@ -134,20 +134,28 @@ this proposed dashboard will give the user insight into statistics of the ship, 
 #  2. Research #
 A meaningfull application was one of our key points.
 Wave Industries has between the group members over 10 years experience in the offshore industry.
-Thus aiming for the shipping industry was natural. 
+Thus aiming for the shipping industry was natural.
 To further add to our project we discussed features we needed to hit to include Statistics and databases.
 
 <a name="plan"></a>
 ## 2.i Plans ##
-We first made a plan for 
+Out plan was creating a ship monitoring system using the MQTT protocol.
 
+We first blocked out feature plan of the project in our [FirstDraft](documentation/firstDraft.pdf) document. 
+The draft lists challanges that we were expecting for this project, aswell as early architecture drawings of our solutions.
+Already at this stage however we have made a clear GANT diagram to understand how much work is actaully possible in the timeframe given.
 <img src="images/gant.png" alt="drawing" height="200"/>
 <img src="images/timeframe.png" alt="drawing" height="200"/>
+
 
 <a name="sim"></a>
 ## 2.ii gunnerus and simulator ##
 Reliable data aqusition was important to fill database with entries.
-Gunnerus was a natural choice to simulate data for since its an NTNU ship
+Gunnerus was a natural choice to simulate data for since its an NTNU ship.
+We made a [software platform](waveBackend/BackendServices/ship_simulator.py) that can emulate values from the ship.
+This Simulator uses a [Config file](waveBackend/BackendServices/ship_config.json) that makes it easy to setup new ships and configurations.
+This allows us to test differnt ship layouts in a rapid test enviorment.
+
 
  - - - -
 

@@ -1,0 +1,72 @@
+2022-11-25T16:31:12: mosquitto version 2.0.15 starting
+2022-11-25T16:31:12: Config loaded from C:\Users\Gardh\OneDrive\Dokumenter\Netowrk2304\final project\MQTT-Overview\mosquitto.conf.
+2022-11-25T16:31:12: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:31:12: Opening ipv6 listen socket on port 1883.
+2022-11-25T16:31:12: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:31:12: Error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2022-11-25T16:31:16: mosquitto version 2.0.15 starting
+2022-11-25T16:31:16: Config loaded from C:\Users\Gardh\OneDrive\Dokumenter\Netowrk2304\final project\MQTT-Overview\mosquitto.conf.
+2022-11-25T16:31:16: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:31:16: Opening ipv6 listen socket on port 1883.
+2022-11-25T16:31:16: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:31:16: Error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2022-11-25T16:32:20: mosquitto version 2.0.15 starting
+2022-11-25T16:32:20: Config loaded from C:\Users\Gardh\OneDrive\Dokumenter\Netowrk2304\final project\MQTT-Overview\mosquitto.conf.
+2022-11-25T16:32:20: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:32:20: Opening ipv6 listen socket on port 1883.
+2022-11-25T16:32:20: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:32:20: Error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2022-11-25T16:32:34: mosquitto version 2.0.15 starting
+2022-11-25T16:32:34: Config loaded from C:\Users\Gardh\OneDrive\Dokumenter\Netowrk2304\final project\MQTT-Overview\mosquitto.conf.
+2022-11-25T16:32:34: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:32:34: Opening ipv6 listen socket on port 1883.
+2022-11-25T16:32:34: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:32:34: Error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2022-11-25T16:32:40: Error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2022-11-25T16:32:53: mosquitto version 2.0.15 starting
+2022-11-25T16:32:53: Config loaded from C:\Users\Gardh\OneDrive\Dokumenter\Netowrk2304\final project\MQTT-Overview\mosquitto.conf.
+2022-11-25T16:32:53: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:32:53: Opening ipv6 listen socket on port 1883.
+2022-11-25T16:32:53: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:32:53: Error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2022-11-25T16:32:58: mosquitto version 2.0.15 starting
+2022-11-25T16:32:58: Config loaded from C:\Users\Gardh\OneDrive\Dokumenter\Netowrk2304\final project\MQTT-Overview\mosquitto.conf.
+2022-11-25T16:32:58: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:32:58: Opening ipv6 listen socket on port 1883.
+2022-11-25T16:32:58: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:32:58: Error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2022-11-25T16:36:22: mosquitto version 2.0.15 starting
+2022-11-25T16:36:22: Config loaded from C:\Users\Gardh\OneDrive\Dokumenter\Netowrk2304\final project\MQTT-Overview\mosquitto.conf.
+2022-11-25T16:36:22: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:36:22: Opening ipv6 listen socket on port 1883.
+2022-11-25T16:36:22: Opening ipv4 listen socket on port 1883.
+2022-11-25T16:36:22: Error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2022-11-25T18:18:47: mosquitto version 2.0.15 starting
+2022-11-25T18:18:47: Config loaded from C:\Users\Gardh\OneDrive\Dokumenter\Netowrk2304\final project\MQTT-Overview\mosquitto.conf.
+2022-11-25T18:18:47: Opening ipv4 listen socket on port 1883.
+2022-11-25T18:18:47: Opening ipv6 listen socket on port 1883.
+2022-11-25T18:18:47: Opening ipv4 listen socket on port 1883.
+2022-11-25T18:18:47: Error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2022-11-25T18:18:50: mosquitto version 2.0.15 starting
+2022-11-25T18:18:50: Config loaded from C:\Users\Gardh\OneDrive\Dokumenter\Netowrk2304\final project\MQTT-Overview\mosquitto.conf.
+2022-11-25T18:18:50: Opening ipv4 listen socket on port 1883.
+2022-11-25T18:18:50: Opening ipv6 listen socket on port 1883.
+2022-11-25T18:18:50: Opening ipv4 listen socket on port 1883.
+2022-11-25T18:18:50: Error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2022-11-25T18:19:44: mosquitto version 2.0.15 starting
+2022-11-25T18:19:44: Config loaded from C:\Users\Gardh\OneDrive\Dokumenter\Netowrk2304\final project\MQTT-Overview\mosquitto.conf.
+2022-11-25T18:19:44: Opening ipv4 listen socket on port 1883.
+2022-11-25T18:19:44: Opening ipv6 listen socket on port 1883.
+2022-11-25T18:19:44: Opening ipv4 listen socket on port 1883.
+2022-11-25T18:19:44: mosquitto version 2.0.15 running
+2022-11-25T18:19:56: mosquitto version 2.0.15 terminating
