@@ -140,7 +140,8 @@ class ShipSummarySerializer(serializers.BaseSerializer):
             nox_emissions_cost = nox_emissions * nox_price
             co2_emissions = fuel_sum * co2_const
             co2_emissions_cost = co2_emissions * co2_price
-            fuel_efficiency = abs(fuel_consumed_per_nm / taget_l_per_nm)
+            fuel_efficiency = abs(fuel_consumed_per_nm / taget_l_per_nm)*100
+            speed = float(distance_sailed.latest('timestamp').data)
 
             data = {
                 'id': instance.id,
@@ -156,7 +157,8 @@ class ShipSummarySerializer(serializers.BaseSerializer):
                 'co2_emissions': round(co2_emissions, 2),
                 'co2_cost': round(co2_emissions_cost, 2),
                 'fuel_efficiency': round(fuel_efficiency, 2),
-                'heading': round(float(heading.data), 2)
+                'heading': round(float(heading.data), 2),
+                'speed': round(speed, 2)
             }
 
             return data
@@ -176,6 +178,7 @@ class ShipSummarySerializer(serializers.BaseSerializer):
                 'co2_emissions': 0,
                 'co2_cost': 0,
                 'fuel_efficiency': 0,
-                'heading': 0
+                'heading': 0,
+                'speed': 0
             }
             return data
