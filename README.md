@@ -200,11 +200,13 @@ Each ship is setup with MQTT clients to send data to the broker via satelite con
 
 <a name="Protocols"></a>
 ## 4.ii Protocols ##
-The main goal of the MQTT protocol is to reduce overhead of packet transportaion. The MQTT protocol uses the TCP stack as a transmission substrate.
-MQTT protocol implements a publish-subscrive paradigm, This decouples a client that sends messages as a publisher and the client that recives as subscriber.
-MQTT is an asynchronous protocol, which means it does not block while the client waits.
+MQTT is a lightweight messaging protocol that is widely used in the Internet of Things (IoT) to enable devices to communicate with each other. The protocol is designed to be lightweight, so it uses a simple publish-subscribe model that allows devices to send messages to a broker, which then distributes the messages to the interested parties.
 
-The main components of MQTT is the MQTT broker. The broaker is dispatching messages to the subscribers.
+One of the main advantages of MQTT is its low overhead. Because it uses a publish-subscribe model, MQTT requires only a small amount of data to be transmitted between devices, making it ideal for use in low-bandwidth or constrained environments. This also makes MQTT faster and more efficient than other protocols, which can be important in applications where quick communication is critical.
+Another advantage of MQTT is its flexibility. The protocol allows for the use of different quality of service (QoS) levels, which can be used to control how messages are delivered. For example, a high QoS level ensures that a message is delivered, even if it takes longer to do so, while a low QoS level allows for faster delivery at the expense of reliability. This flexibility makes MQTT suitable for a wide range of applications and environments.
+
+However, there are also some disadvantages to using MQTT. One of the main drawbacks is that the protocol is not secure by default. Although it is possible to add security to MQTT by using encryption, this must be done manually, which can be time-consuming and error-prone. As a result, MQTT is not always suitable for applications where security is a critical concern.
+In addition, MQTT is not as widely supported as some other protocols. While it is widely used in the IoT, it is not as commonly used in other areas, such as in traditional enterprise systems. This can make it more difficult to integrate MQTT-based systems with existing infrastructure.
 
 In our implementation of this setup.
 MQTT clients send payloads to different topics on the MQTT broker, this is used to catgorize different parts of the ship,
@@ -216,8 +218,13 @@ We can see that this message was sent by the gunnerus vessel and the statistics 
 
 <a name="Security"></a>
 ## 4.iii Security ##
-what did we do to ensure security of application
-We used TLS encryption on the messages. Since the data we are handeling can be sensetive such as location this was needed, MQTT broker we used
+There are several ways to add security to an MQTT setup. One of the most common ways is to use encryption, either by using Transport Layer Security (TLS) or Secure Sockets Layer (SSL) to encrypt the communication between the MQTT broker and the clients. This ensures that the data transmitted over the network cannot be intercepted and read by unauthorized parties.
+Another way to add security to an MQTT setup is to use authentication. This can be done by requiring clients to provide a username and password before they are allowed to connect to the broker. This ensures that only authorized clients can access the broker and send or receive messages.
+It is also possible to use access control lists (ACLs) to control which clients are allowed to publish or subscribe to specific topics. This can be used to limit the access of certain clients to specific parts of the MQTT network, and can be combined with authentication to provide an additional layer of security.
+
+Overall, securing an MQTT setup involves a combination of encryption, authentication, and access control. By using these techniques, it is possible to create a secure and reliable MQTT network that can be used to support a wide range of IoT applications.
+
+however for our setup we only had time to complete the TLS encryption setup, read further in future for more info about plans.
 
  - - - -
 
@@ -228,18 +235,44 @@ explain system as a whole?
 <a name="Frontend"></a>
 ## 5.i Frontend ##
 add knowlage about frontend development, what frameworks, what graphing, what did we achive
+The frontend is a javascript framework called Vue.js, It allows us to create reusable components and build complex user interfaces.
 
 <a name="Backend"></a>
 ## 5.ii Backend ##
-add knowlage about backend, how mqtt is talking to application, how is database setup, explain sql stuff
+the MQTT client is sending post requests to a backend server, which is responsible for storing this data in a database. 
+The database is designed to store data according to the ship name.
+This means that each post is associated with a specific ship, and can be easily retrieved and accessed by the front end system when needed. 
 
 <a name="MQTT"></a>
 ## 5.iii MQTT and ship ##
-Add knowlage about MQTT setup, how its connected on the theoretical ship
+The sensors on a vessel are responsible for gathering various types of data, such as temperature, pressure, and other measurements.
+This data is typically collected in real-time, and is used to monitor the ship and ensure its proper functioning.
+Once the data has been collected, it is typically stored in a database on the ship's backend system.
+This allows the data to be easily accessed and used by the ship's crew
+
+We can either access this data through theyr systems if vendors allow this, or we can gather in real time by accessing the PLC comminications.
+<img src="images/enginesetup.png" alt="drawing" height="512">
+The MQTT protocol was created for this porpouse in mind, where bandwitch overhead and packet reliability is the focus.
+The MQTT brokers also can use TLS/SSL aswell as password protection to ensure costumer confidentiality.
+Scalibilty also is a focus, as we have one broker per costumer
+
+<img src="images/packetNumbering.png" alt="drawing" height="320">
+
+Bandwitdh graph shows the linear estimation of O(n), the packets have a max Bytes of 150 per message, this scales lineary.
+This graph shows us that the number of packets needed to cause memory issues is quite large. 
 
 <a name="good"></a>
 ## 5.iiii What makes this a good solution ##
-add features that we feel went well, and deserves a higher grade
+
+we focused on a real-world problem that is relevant and important today: the need for a more sustainable, environmentally-friendly shipping industry.
+We also approached this problem from a unique perspective, and developed a solution that is innovative and practical.
+we have a background story that is entertaining and we have a clear understanding of the challenges and opportunities in the shipping industry. 
+We used professional tools such as Gantt charts and Git to manage our project, and we worked in sprints to ensure that we stayed on track and made consistent progress.
+in additon we used branching and code reviews on merging to ensure the good code got pushed to the main branch.
+
+our solution is designed to be user-friendly and intuitive, so that it can be easily adopted and used by ship owners, operators, and crew members. 
+This makes our solution accessible and relevant to a wide range of stakeholders, and ensures that it can be easily integrated into existing systems and processes.
+ it addresses a key problem in the shipping industry, and uses advanced technologies to deliver a solution that is practical, effective, and easy to use.
 
  - - - -
 
