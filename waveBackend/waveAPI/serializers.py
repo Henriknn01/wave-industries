@@ -45,7 +45,7 @@ class ShipSummarySerializer(serializers.BaseSerializer):
         nox_const = 0.00336  # change to realistic number
         nox_price = 23.79  # https://www.skatteetaten.no/satser/saravgift---nox/
         co2_price = 25  # https://www.regjeringen.no/no/tema/okonomi-og-budsjett/skatter-og-avgifter/avgiftssatser-2022/id2873933/
-        taget_l_per_nm = 12
+        taget_l_per_nm = 15
 
         try:
             total_fuel_consumption = Entry.objects.filter(
@@ -140,7 +140,7 @@ class ShipSummarySerializer(serializers.BaseSerializer):
             nox_emissions_cost = nox_emissions * nox_price
             co2_emissions = fuel_sum * co2_const
             co2_emissions_cost = co2_emissions * co2_price
-            fuel_efficiency = abs(fuel_consumed_per_nm / taget_l_per_nm)*100
+            fuel_efficiency = (1-(abs(taget_l_per_nm-fuel_consumed_per_nm)/taget_l_per_nm))*100
             speed = float(distance_sailed.latest('timestamp').data)
 
             data = {
