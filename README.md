@@ -179,6 +179,10 @@ Our approach to this project was refined by our previous experiences of working 
 Focused on having physical meetings in the start. 
 We organized weekly meetings with minimum 1 physical meeting every week and the rest as digital meetings. This was so that we could quickly get started with the project and get everyone on the team up to speed with what that was needed to be done. Later on in the project cycle we would have more digital meetings, to test things like the MQTT broker across the net and not just locally. We mapped out estimated progress by using gant chart. This helped us to not spend too much time on certain things and move on with the project, having constant progress and not let things stagnate. Github and its issue system was also used and it made things simpler since we were already familiar with it. 
 
+The work was devided so everyone could work efficiently. By splitting up the work and letting the easier parts be done by the lesser experienced developers on the team. And the heavy stuff like the web site and simulator be done by the ones with more experience. Our team consisted of 1 main developer. He was already an experienced web dev so he got the task of doing the main parts. 1 scrum master, that focused on documentation and MQTT connection. 2 people to do more documentation, research  and developing the MQTT. That the parts that were hard were discussed in the meeting and solved together as a group.
+
+Our commits were well structured. In the commit message we would write down what files were changed and what that was changed. These commits would be done on a separate branch to keep things more organized. Pull requests were made where another person had to approve so the changes could be merged with the main branch. 
+
 <a name="Sprint"></a>
 ## 3.ii Sprint Work ##
 We emphasized on having a working prototype ready by the end of every week.
