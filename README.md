@@ -177,6 +177,8 @@ Our commits were well structured. In the commit message we would write down what
 We emphasized on having a working prototype ready by the end of every week.
 We used a sprint based system. Scrums would consist of the general agenda of the meeting, what we had done previously, what we are currently working on and discussing future developments. By the end of the week we would have a prototype tested and functional with whatever new features that were added that week. 
 
+see [SprintReport](documentation/SprintReport.pdf) for a week by week update and a retrospective at the bottom of the document
+
  - - - -
 
 
@@ -229,31 +231,19 @@ explain system as a whole?
 
 <a name="Frontend"></a>
 ## 5.i Frontend ##
-shows data to user
-
-The frontend is a javascript framework called Vue.js, It allows us to create reusable components and build complex user interfaces. 
-We uses axios which is a framework that interacts with the rest api.
-
-on load get data from backend
-
-http to serve data to user
-
-rest api is a http tcp connection.
-
-ieadlly we would use https
+The frontend user interface is a critical component of our system, as it is responsible for showing data to the user. 
+We use the Vue.js javascript framework to create reusable components and build complex user interfaces. 
+To interact with the backend and retrieve data, we use axios, which is a framework that makes it easy to make HTTP requests. 
+When the frontend is loaded, it makes a request to the backend using HTTP to get the data that it needs to serve to the user. 
+The backend uses a REST API over a HTTP TCP connection to provide the data to the frontend. Ideally, we would use HTTPS instead of HTTP to provide an extra layer of security.
 
 
 
 <a name="Backend"></a>
 ## 5.ii Backend ##
-the MQTT client is sending post requests to a rest api, which is responsible for storing this data in a database. 
-The database has a ship, which is linked to the differenent sensors in the database
-This means that each post is associated with a specific ship, and can be easily retrieved and accessed by the front end system when needed.
-
-rest api talks to database and sends request for data
-
-rest api does some proccesing, formating and stuff
-
+The MQTT client sends data to a REST API, which is responsible for storing the data in a database.
+The database contains a table for each ship, where the sensor data is linked together with the correct ship, allowing the frontend system to easily retrieve and access it when needed.
+The REST API acts as an intermediary between the database and the frontend, receiving requests for data and processing, formatting, and sending the data back to the frontend as needed.
 
 
 <a name="MQTT"></a>
@@ -264,7 +254,9 @@ Once the data has been collected, it is typically stored in a database on the sh
 This allows the data to be easily accessed and used by the ship's crew
 
 We can either access this data through theyr systems if vendors allow this, or we can gather in real time by accessing the PLC comminications.
+
 <img src="images/enginesetup.png" alt="drawing" height="512">
+
 The MQTT protocol was created for this porpouse in mind, where bandwitch overhead and packet reliability is the focus.
 The MQTT brokers also can use TLS/SSL aswell as password protection to ensure costumer confidentiality.
 Scalibilty also is a focus, as we have one broker per costumer
