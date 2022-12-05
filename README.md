@@ -14,30 +14,11 @@ the first part is the readme you will find in a standard git repo, explains buil
 <a name="Readme"></a>
 # Project readme #
 
-## wave_frontend
+## wave_frontend ##
+Please refeere to wave_frontend [README](wave_frontend/README.md)
 
-### Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## wave_frontend ##
+Please refeere to waveBackend [README](waveBackend/README.md)
 
 
 
@@ -90,6 +71,14 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
  - - - -
 <a name="Background"></a>
 # 1. Background #
+
+
+# Wave project Video #
+
+https://youtu.be/l-YfQ0mNnrs
+
+
+
 
 
 <a name="wave"></a>
@@ -240,14 +229,32 @@ explain system as a whole?
 
 <a name="Frontend"></a>
 ## 5.i Frontend ##
-add knowlage about frontend development, what frameworks, what graphing, what did we achive
-The frontend is a javascript framework called Vue.js, It allows us to create reusable components and build complex user interfaces.
+shows data to user
+
+The frontend is a javascript framework called Vue.js, It allows us to create reusable components and build complex user interfaces. 
+We uses axios which is a framework that interacts with the rest api.
+
+on load get data from backend
+
+http to serve data to user
+
+rest api is a http tcp connection.
+
+ieadlly we would use https
+
+
 
 <a name="Backend"></a>
 ## 5.ii Backend ##
-the MQTT client is sending post requests to a backend server, which is responsible for storing this data in a database. 
-The database is designed to store data according to the ship name.
-This means that each post is associated with a specific ship, and can be easily retrieved and accessed by the front end system when needed. 
+the MQTT client is sending post requests to a rest api, which is responsible for storing this data in a database. 
+The database has a ship, which is linked to the differenent sensors in the database
+This means that each post is associated with a specific ship, and can be easily retrieved and accessed by the front end system when needed.
+
+rest api talks to database and sends request for data
+
+rest api does some proccesing, formating and stuff
+
+
 
 <a name="MQTT"></a>
 ## 5.iii MQTT and ship ##
