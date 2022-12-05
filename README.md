@@ -17,7 +17,7 @@ the first part is the readme you will find in a standard git repo, explains buil
 ## wave_frontend ##
 Please refeere to wave_frontend [README](wave_frontend/README.md)
 
-## wave_frontend ##
+## wave_backend ##
 Please refeere to waveBackend [README](waveBackend/README.md)
 
 
