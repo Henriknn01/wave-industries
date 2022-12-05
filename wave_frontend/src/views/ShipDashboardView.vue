@@ -9,13 +9,13 @@
       <div class="grid grid-rows-5 grid-cols-4 gap-4">
         <div class="row-span-1 col-span-full bg-hero shadow-md bg-blend-darken bg-cover rounded bg-blur align-middle text-left flex">
           <div class="m-auto">
-            <h1 class="text-5xl font-extrabold uppercase text-white">R/V Gunnerus</h1>
+            <h1 class="text-5xl font-extrabold uppercase text-white">{{ship_data.name}}</h1>
           </div>
         </div>
-        <ShortInfoCard content="6202 kW h" description="Energy produced the last 24 hours"/>
-        <ShortInfoCard content="31,000 Liters" description="Fuel consumed the last 24 hours"/>
-        <ShortInfoCard content="133.7 NM" description="Distance traveled the last 24 hours"/>
-        <ShortInfoCard content="310 L/nm" description="Liters per nauticle mile the last 24 hours"/>
+        <ShortInfoCard :content="ship_data.energy_produced + ' kW h'" description="Energy produced the last 24 hours"/>
+        <ShortInfoCard :content="ship_data.fuel_consumed + ' Liters'" description="Fuel consumed the last 24 hours"/>
+        <ShortInfoCard :content="ship_data.nm_sailed + ' NM'" description="Distance traveled the last 24 hours"/>
+        <ShortInfoCard :content="ship_data.fuel_consumed_per_nm + ' L/nm'" description="Liters per nauticle mile the last 24 hours"/>
         <div class="row-span-3 col-span-2 rounded shadow-md text-left p-4 bg-white">
           <h2 class="text-2xl font-bold p-2">Fuel consumption <span class="text-sm font-light">(liters per hour)</span></h2>
           <div id="chart">
@@ -35,14 +35,14 @@
             </l-map>
           </div>
         </div>
-        <radial-chart-basic title="Fuel efficiency" value=67 chart-color="#00FF89"/>
-        <radial-chart-basic title="Fuel level" value=15 chart-color="#FF3131"/>
+        <radial-chart-basic id="fuel_ef" title="Fuel efficiency" :value="ship_data.fuel_efficiency" chart-color="#00FF89"/>
+        <radial-chart-basic id="fuel_lvl" title="Fuel level" :value="ship_data.fuel_level" chart-color="#FF3131"/>
         <maintenance-card/>
-        <live-stats-card/>
-        <ShortInfoCard content="210,320 Kr" description="NOx emissions tax so far"/>
-        <ShortInfoCard content="153,102 Kr" description="Co2 emissions tax so far"/>
-        <ShortInfoCard content="75 Kg" description="Nox produced last 24 hours"/>
-        <ShortInfoCard content="100 Kg" description="Co2 produced last 24 hours"/>
+        <live-stats-card :heading="ship_data.heading" :speed="ship_data.speed"/>
+        <ShortInfoCard :content="ship_data.nox_cost +' Kr'" description="NOx emissions tax so far"/>
+        <ShortInfoCard :content="ship_data.co2_cost +' Kr'" description="Co2 emissions tax so far"/>
+        <ShortInfoCard :content="ship_data.nox_emissions +' Kg'" description="Nox produced last 24 hours"/>
+        <ShortInfoCard :content="ship_data.co2_emissions +' Kg'" description="Co2 produced last 24 hours"/>
         <ShortInfoCard content="4 🏴‍☠️ " description="Pirate attacks fought off so far"/>
         <ShortInfoCard content="Coming soon" description="More statistics coming soon"/>
       </div>
@@ -58,6 +58,7 @@ import ShortInfoCard from "@/components/ShortInfoCard";
 import RadialChartBasic from "@/components/RadialChartBasic";
 import MaintenanceCard from "@/components/MaintenanceCard";
 import LiveStatsCard from "@/components/LiveStatsCard";
+import axios from "axios";
 
 export default {
   name: "ShipDashboardView",
@@ -71,9 +72,9 @@ export default {
     LTileLayer,
   },
 
-
   data: function() {
     return {
+      ship_data: {},
       series: [{
         name: 'Engine 1',
         data: [31, 40, 28, 51, 42, 109, 100]
@@ -115,7 +116,16 @@ export default {
       zoom: 10,
     }
   },
-  async beforeMount() {
+  mounted() {
+    axios.get(this.api_url+"ship-details/"+this.$route.params.id+"?format=json",)
+        .then(response => {
+          this.ship_data = response.data;
+
+        }).catch(error => {
+      console.log(error)
+    })
+  },
+  beforeMount() {
     this.mapIsReady = true;
   },
 }

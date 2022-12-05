@@ -2,7 +2,7 @@
   <div class="row-span-1 col-span-1 flex align-middle rounded shadow-md text-left p-4 bg-white">
     <div class="m-auto">
       <div id="chart">
-        <apexchart type="radialBar" height="350" :options="chartOptions" :series="series"></apexchart>
+        <apexchart type="radialBar" height="350" :options="chartOptions" :series="[value]"></apexchart>
       </div>
     </div>
   </div>

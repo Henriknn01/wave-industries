@@ -11,12 +11,12 @@
       <div class="grid grid-rows-2 grid-cols-2 w-full h-full gap-4">
         <div class="row-span-1 col-span-1 flex align-middle">
           <div class="m-auto">
-            <h1 class="text-xl"><span class="font-bold">Heading:</span> 178°</h1>
+            <h1 class="text-xl"><span class="font-bold">Heading:</span> {{ heading }}°</h1>
           </div>
         </div>
         <div class="row-span-1 col-span-1 flex align-middle">
           <div class="m-auto">
-            <h1 class="text-xl"><span class="font-bold">Speed:</span> 23 knots</h1>
+            <h1 class="text-xl"><span class="font-bold">Speed:</span> {{ speed }} knots</h1>
           </div>
         </div>
         <div class="row-span-1 col-span-1 flex align-middle">
@@ -37,6 +37,10 @@
 <script>
 export default {
   name: "LiveStatsCard",
+  props: {
+    heading: String,
+    speed: String
+  }
 }
 </script>
 
