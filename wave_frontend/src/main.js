@@ -1,23 +1,21 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './index.css'
-import {createRouter, createWebHashHistory} from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router';
 import HomeView from "./views/HomeView";
 import ShipDashboardView from "@/views/ShipDashboardView";
 import VueApexCharts from 'vue3-apexcharts';
-import tmpView from "@/views/tmpView";
 import DashboardView from "@/views/DashboardView";
 
 const routes = [
     { path: '/', name: 'home', component: HomeView },
-    { path: '/dashboard', name: 'dahboard', component: DashboardView },
-    { path: '/dashboard/:id', name: 'ship-dashboard', component: ShipDashboardView },
-    { path: '/tmp', component: tmpView }
+    { path: '/dashboard', name: 'dashboard', component: DashboardView },
+    { path: '/ship-details/:id', name: 'ship-dashboard', component: ShipDashboardView },
 ]
 
 const router = createRouter({
     // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes, // short for `routes: routes`
 })
 
