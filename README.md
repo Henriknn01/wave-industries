@@ -75,7 +75,7 @@ Please refeere to waveBackend [README](waveBackend/README.md)
 
 # Wave project Video #
 
-<video src="https://youtu.be/l-YfQ0mNnrs"></video>
+https://youtu.be/l-YfQ0mNnrs
 
 
 
